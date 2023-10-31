@@ -95,7 +95,7 @@ def send_message(chat_id, text, reply_markup=None):
     return response
 
 
-last_tasks=None
+last_tasks = None
 
 
 @app.route('/webhook', methods=['POST'])
@@ -107,7 +107,8 @@ def webhook():
         chat_id = data['callback_query']['message']['chat']['id']
         message_id = data['callback_query']['message']['message_id']  # 获取消息ID
         page = int(query_data.split('_')[1])
-        tasks = lixianlist()
+        #tasks = lixianlist()
+        tasks = last_tasks
         tasks_items = list(tasks.items())
         total_pages = len(tasks_items) // PER_PAGE + (1 if len(tasks_items) % PER_PAGE != 0 else 0)  # 计算总页数
         task_list = "\n\n".join([f"*{name[:70]}*:\n`{hash}`" for name, hash in tasks_items[page*PER_PAGE:(page+1)*PER_PAGE]])

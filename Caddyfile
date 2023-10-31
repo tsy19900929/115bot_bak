@@ -1,0 +1,4 @@
+your-domain.com {  
+    tls /path/to/cert.pem /path/to/key.pem  
+    reverse_proxy localhost:5000  
+}  
